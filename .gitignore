@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+
+# Rendered by scripts/generate.mjs at build time
+/index.html
+/404.html
+/blog/
+/topics/
+/about/
+generated-pages.json
+public/sitemap.xml
+public/robots.txt
