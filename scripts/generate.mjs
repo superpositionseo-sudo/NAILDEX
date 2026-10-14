@@ -35,6 +35,8 @@ const HUB_BLURBS = {
     'The French manicure in fall colors: burgundy, chocolate, tortoise and gold chrome tips, micro lines and ombre fades, on almond, square, coffin and short shapes.',
   'cat-eye':
     'Magnetic gel that moves: velvet glow, duochrome shifts and galaxy finishes in emerald, navy, wine and copper, plus cat eye French on every shape.',
+  'jelly-chrome':
+    'Translucent jelly color under chrome: aura pinks, iridescent blues, coral and lavender pearl that glow like glass candy on every skin tone.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
