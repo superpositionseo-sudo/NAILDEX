@@ -39,6 +39,8 @@ const HUB_BLURBS = {
     'Translucent jelly color under chrome: aura pinks, iridescent blues, coral and lavender pearl that glow like glass candy on every skin tone.',
   'milky-white':
     'One color, every finish: pearl glaze, iridescent mirror, vanilla and silver chrome over a sheer milky base, on the almond shape that suits it best.',
+  coffee:
+    'The full coffee menu on nails: espresso, chocolate, mocha and latte shades, latte art, marble swirls and coffee chrome across every shape.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
