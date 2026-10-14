@@ -37,6 +37,8 @@ const HUB_BLURBS = {
     'Magnetic gel that moves: velvet glow, duochrome shifts and galaxy finishes in emerald, navy, wine and copper, plus cat eye French on every shape.',
   'jelly-chrome':
     'Translucent jelly color under chrome: aura pinks, iridescent blues, coral and lavender pearl that glow like glass candy on every skin tone.',
+  'milky-white':
+    'One color, every finish: pearl glaze, iridescent mirror, vanilla and silver chrome over a sheer milky base, on the almond shape that suits it best.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
