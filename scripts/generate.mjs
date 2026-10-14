@@ -23,6 +23,10 @@ const HUB_BLURBS = {
     'The richest month in the nail calendar: burgundy, black cherry, tortoiseshell, copper chrome and subtle Halloween sets, all on real hands.',
   fall:
     'The full season palette: chocolate, espresso, tortoise, plaid, leaves and cozy knit energy across almond, coffin, square and oval shapes.',
+  halloween:
+    'Ghosts, jack-o-lanterns, blood drip and matte black everything: Halloween sets on real hands, from cute short designs to full stiletto drama.',
+  'fall-almond':
+    'Fall in its hardest working shape: burgundy, tortoise, chocolate and copper chrome on almond nails, with French tips, leaf art and ombre sets on every skin tone.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
