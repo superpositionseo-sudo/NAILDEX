@@ -31,6 +31,8 @@ const HUB_BLURBS = {
     'Short nails, full October: oxblood, chocolate, tortoise and pumpkin art at natural lengths, on square, squoval and oval shapes that still type, text and open jars.',
   'tortoiseshell-fall':
     'The pattern of the season in every dose: full amber marble, tortoise French tips, gold foil and olive tortoise, with espresso and chocolate solids where the pattern rests.',
+  'october-french-tips':
+    'The French manicure in fall colors: burgundy, chocolate, tortoise and gold chrome tips, micro lines and ombre fades, on almond, square, coffin and short shapes.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
