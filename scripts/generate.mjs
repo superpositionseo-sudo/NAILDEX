@@ -29,6 +29,8 @@ const HUB_BLURBS = {
     'Fall in its hardest working shape: burgundy, tortoise, chocolate and copper chrome on almond nails, with French tips, leaf art and ombre sets on every skin tone.',
   'short-october':
     'Short nails, full October: oxblood, chocolate, tortoise and pumpkin art at natural lengths, on square, squoval and oval shapes that still type, text and open jars.',
+  'tortoiseshell-fall':
+    'The pattern of the season in every dose: full amber marble, tortoise French tips, gold foil and olive tortoise, with espresso and chocolate solids where the pattern rests.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
