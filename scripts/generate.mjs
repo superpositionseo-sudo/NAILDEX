@@ -27,6 +27,8 @@ const HUB_BLURBS = {
     'Ghosts, jack-o-lanterns, blood drip and matte black everything: Halloween sets on real hands, from cute short designs to full stiletto drama.',
   'fall-almond':
     'Fall in its hardest working shape: burgundy, tortoise, chocolate and copper chrome on almond nails, with French tips, leaf art and ombre sets on every skin tone.',
+  'short-october':
+    'Short nails, full October: oxblood, chocolate, tortoise and pumpkin art at natural lengths, on square, squoval and oval shapes that still type, text and open jars.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
