@@ -5,7 +5,7 @@
 // (looks like "G-XXXXXXXXXX") here and rebuild. While this is an empty
 // string, NO analytics script is loaded at all.
 // Do NOT reuse the measurement ID of any other site.
-export const GA4_MEASUREMENT_ID = '';
+export const GA4_MEASUREMENT_ID = 'G-W2G0PFYYCV';
 
 export const SITE_URL = 'https://naildex.com';
 export const SITE_NAME = 'NailDex';
