@@ -7,6 +7,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 
 const ROOT = process.cwd();
 const SITE_URL = 'https://naildex.com';
@@ -14,6 +15,30 @@ const YT_CHANNEL = 'https://www.youtube.com/@naildex';
 const PINTEREST = 'https://www.pinterest.com/sewinsnearmeofficial/';
 
 const { posts } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/posts.json'), 'utf8'));
+
+// Generate the social/schema image crops (public/images/og/<slug>-*.jpg)
+// from each article's pin image. Best effort: if python3/PIL is missing,
+// pages fall back to the pin image itself for og:image and schema.
+try {
+  execSync('python3 scripts/og-images.py', { cwd: ROOT, stdio: 'inherit' });
+} catch (e) {
+  console.warn('og-images.py failed, continuing without crops:', e.message);
+}
+
+// Social/schema image set for an article. Crops live at
+// /images/og/<slug>-<ratio>.jpg (1200x630 og, 16x9, 4x3, 1x1), generated
+// from the pin image by scripts/og-images.py. Returns only files that
+// exist, then the pin image and the cover photo.
+function ogCrop(post, suffix) {
+  const p = '/images/og/' + post.slug + '-' + suffix + '.jpg';
+  return fs.existsSync(path.join(ROOT, 'public', p)) ? p : null;
+}
+function articleImages(post) {
+  const paths = ['og', '16x9', '4x3', '1x1']
+    .map((s) => ogCrop(post, s)).filter(Boolean);
+  paths.push(post.pinImage, post.coverImage);
+  return [...new Set(paths)];
+}
 const sorted = [...posts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 const hubs = [...new Map(posts.map((p) => [p.hubSlug, p.category])).entries()]
   .map(([slug, name]) => ({ slug, name }));
@@ -66,12 +91,13 @@ function paras(mdArray) {
   return mdArray.map((p) => '<p>' + inline(p) + '</p>').join('\n');
 }
 
-function head({ title, description, canonical, ogType = 'website', ogImage = null, extra = '' }) {
+function head({ title, description, canonical, ogType = 'website', ogImage = null, ogWidth = null, ogHeight = null, extra = '' }) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="max-image-preview:large">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
@@ -81,7 +107,9 @@ function head({ title, description, canonical, ogType = 'website', ogImage = nul
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
 ${ogImage ? '<meta property="og:image" content="' + SITE_URL + ogImage + '">' : ''}
+${ogImage && ogWidth ? '<meta property="og:image:width" content="' + ogWidth + '">\n<meta property="og:image:height" content="' + ogHeight + '">' : ''}
 <meta name="twitter:card" content="summary_large_image">
+${ogImage ? '<meta name="twitter:image" content="' + SITE_URL + ogImage + '">' : ''}
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,7 +231,7 @@ function articlePage(post) {
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt,
-    image: [SITE_URL + post.coverImage],
+    image: articleImages(post).map((p) => SITE_URL + p),
     datePublished: post.publishedAt,
     author: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
@@ -233,12 +261,15 @@ function articlePage(post) {
 </main>
 ${footer()}`;
 
+  const ogMain = ogCrop(post, 'og');
   return head({
     title: post.title + ' | NailDex',
     description: post.excerpt,
     canonical: SITE_URL + '/blog/' + post.slug + '/',
     ogType: 'article',
-    ogImage: post.coverImage,
+    ogImage: ogMain || post.pinImage,
+    ogWidth: ogMain ? 1200 : 1000,
+    ogHeight: ogMain ? 630 : 1500,
     extra: '<script type="application/ld+json">' + JSON.stringify(jsonLd) + '</script>',
   }) + '\n<body>\n' + body;
 }
@@ -405,9 +436,26 @@ const urls = [
   ...hubs.map((h) => ({ loc: '/topics/' + h.slug + '/', lastmod: sorted[0].publishedAt })),
   ...sorted.map((p) => ({ loc: '/blog/' + p.slug + '/', lastmod: p.publishedAt })),
 ];
+const postsByLoc = new Map(sorted.map((p) => ['/blog/' + p.slug + '/', p]));
+function sitemapEntry(u) {
+  let entry = '  <url><loc>' + SITE_URL + u.loc + '</loc><lastmod>' + u.lastmod + '</lastmod>';
+  const post = postsByLoc.get(u.loc);
+  if (post) {
+    // Google image sitemap: the article's social/schema image set plus
+    // its first design photos, absolute URLs, deduped.
+    const imgs = [...new Set([
+      ...articleImages(post),
+      ...post.designs.slice(0, 5).map((d) => d.image),
+    ])];
+    entry += imgs.map((img) =>
+      '\n    <image:image><image:loc>' + esc(SITE_URL + img) + '</image:loc></image:image>'
+    ).join('');
+  }
+  return entry + '</url>';
+}
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
-  + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + urls.map((u) => '  <url><loc>' + SITE_URL + u.loc + '</loc><lastmod>' + u.lastmod + '</lastmod></url>').join('\n')
+  + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+  + urls.map(sitemapEntry).join('\n')
   + '\n</urlset>\n';
 fs.writeFileSync(path.join(ROOT, 'public/sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(ROOT, 'public/robots.txt'),
