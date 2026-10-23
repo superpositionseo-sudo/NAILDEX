@@ -126,6 +126,12 @@ const HUB_BLURBS = {
     'Midnight in a manicure: black and gold coffins, glitter, confetti chrome and champagne shimmer for the last night of the year.',
   thanksgiving:
     'Gratitude season sets: turkey, pumpkin and leaf art almonds, warm browns and harvest plaid for the table and the photos.',
+  'rose-gold-chrome':
+    'Mirror rose gold chrome, blush metallic finishes, glitter, foil and French tips on real hands: the warm-metal edit.',
+  'short-winter':
+    'Snowflake art, frosty whites, short burgundy, cozy glitter and French tips at practical lengths on real hands: the short winter edit.',
+  plum:
+    'Rich plum, dark eggplant, chrome and cat eye depth, glitter, marble and matte finishes on real hands: the deep-purple edit.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
