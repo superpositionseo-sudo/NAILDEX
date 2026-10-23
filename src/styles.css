@@ -44,7 +44,7 @@ h1, h2, h3, .serif { font-family: var(--serif); color: var(--espresso); }
 }
 .site-header .wrap {
   display: flex; align-items: center; gap: 1rem;
-  padding-top: 0.6rem; padding-bottom: 0.6rem; flex-wrap: wrap;
+  padding-top: 0.6rem; padding-bottom: 0.6rem; flex-wrap: nowrap;
 }
 .brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
 .brand img { width: 40px; height: 40px; border-radius: 50%; }
@@ -53,9 +53,23 @@ h1, h2, h3, .serif { font-family: var(--serif); color: var(--espresso); }
   color: var(--cream); letter-spacing: 0.04em;
 }
 .brand .wordmark em { color: var(--gold); font-style: normal; }
-.main-nav { display: flex; gap: 1.15rem; margin-left: auto; align-items: center; flex-wrap: wrap; }
+.main-nav { display: flex; gap: 1.15rem; margin-left: auto; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
 .main-nav a {
   color: var(--cream); text-decoration: none; font-size: 0.98rem; font-weight: 600;
+}
+@media (max-width: 640px) {
+  .site-header .wrap { gap: 0.5rem; width: 100%; padding-inline: 0.75rem; }
+  .brand { gap: 0.4rem; }
+  .brand img { width: 30px; height: 30px; }
+  .brand .wordmark { font-size: 1.12rem; }
+  .main-nav { gap: 0.55rem; }
+  .main-nav a { font-size: 0.83rem; }
+  .main-nav .btn { padding: 0.35rem 0.65rem; font-size: 0.83rem; }
+}
+@media (max-width: 360px) {
+  .main-nav { gap: 0.4rem; }
+  .main-nav a { font-size: 0.78rem; }
+  .brand .wordmark { font-size: 1rem; }
 }
 .main-nav a:hover { color: var(--gold-soft); }
 .btn {

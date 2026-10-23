@@ -195,7 +195,7 @@ function header() {
     </a>
     <nav class="main-nav" aria-label="Main">
       <a href="/blog/">Journal</a>
-      ${hubs.map((h) => '<a href="/topics/' + h.slug + '/">' + esc(h.name) + '</a>').join('\n      ')}
+      <a href="/topics/">Topics</a>
       <a href="/about/">About</a>
       <a class="btn btn-gold" href="${YT_CHANNEL}" rel="noopener" target="_blank">Watch</a>
     </nav>
@@ -431,6 +431,27 @@ ${footer()}`;
   }) + '\n<body>\n' + body;
 }
 
+function topicsIndexPage() {
+  const body = `${header()}
+<main class="wrap">
+  <div class="page-head">
+    <p class="meta">Browse topics</p>
+    <h1>Nail Topics</h1>
+    <p>Every NailDex topic in one place. Pick a season, color, finish or shape and browse its collections.</p>
+  </div>
+  <div class="hub-row">
+    ${hubs.map((h) => '<a class="hub-chip" href="/topics/' + h.slug + '/">' + esc(h.name) + ' nails</a>').join('\n    ')}
+  </div>
+</main>
+${footer()}`;
+  return head({
+    title: 'Nail Topics | NailDex',
+    description: 'Browse all NailDex nail topics: fall, October, chrome, French tips, winter, Christmas and more.',
+    canonical: SITE_URL + '/topics/',
+    ogImage: sorted[0].coverImage,
+  }) + '\n<body>\n' + body;
+}
+
 function aboutPage() {
   const body = `${header()}
 <main class="narrow">
@@ -487,6 +508,7 @@ function writePage(relPath, html) {
 
 writePage('index.html', homePage());
 writePage('blog/index.html', blogIndexPage());
+writePage('topics/index.html', topicsIndexPage());
 for (const post of posts) writePage('blog/' + post.slug + '/index.html', articlePage(post));
 for (const hub of hubs) writePage('topics/' + hub.slug + '/index.html', hubPage(hub));
 writePage('about/index.html', aboutPage());
@@ -498,6 +520,7 @@ fs.writeFileSync(path.join(ROOT, 'generated-pages.json'), JSON.stringify(pages, 
 const urls = [
   { loc: '/', lastmod: sorted[0].publishedAt },
   { loc: '/blog/', lastmod: sorted[0].publishedAt },
+  { loc: '/topics/', lastmod: sorted[0].publishedAt },
   { loc: '/about/', lastmod: sorted[0].publishedAt },
   ...hubs.map((h) => ({ loc: '/topics/' + h.slug + '/', lastmod: sorted[0].publishedAt })),
   ...sorted.map((p) => ({ loc: '/blog/' + p.slug + '/', lastmod: p.publishedAt })),
