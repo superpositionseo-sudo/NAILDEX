@@ -58,13 +58,13 @@ h1, h2, h3, .serif { font-family: var(--serif); color: var(--espresso); }
   color: var(--cream); text-decoration: none; font-size: 0.98rem; font-weight: 600;
 }
 @media (max-width: 640px) {
-  .site-header .wrap { gap: 0.5rem; width: 100%; padding-inline: 0.75rem; }
-  .brand { gap: 0.4rem; }
-  .brand img { width: 30px; height: 30px; }
-  .brand .wordmark { font-size: 1.12rem; }
-  .main-nav { gap: 0.55rem; }
-  .main-nav a { font-size: 0.83rem; }
-  .main-nav .btn { padding: 0.35rem 0.65rem; font-size: 0.83rem; }
+  .site-header .wrap { gap: 0.45rem; width: 100%; padding-inline: 0.7rem; }
+  .brand { gap: 0.35rem; }
+  .brand img { width: 28px; height: 28px; }
+  .brand .wordmark { font-size: 1.05rem; }
+  .main-nav { gap: 0.45rem; }
+  .main-nav a { font-size: 0.8rem; }
+  .main-nav .btn { padding: 0.32rem 0.6rem; font-size: 0.8rem; }
 }
 @media (max-width: 360px) {
   .main-nav { gap: 0.4rem; }
@@ -170,6 +170,15 @@ h1, h2, h3, .serif { font-family: var(--serif); color: var(--espresso); }
   border-radius: 0 10px 10px 0; padding: 0.85rem 1.05rem; margin-top: 0.9rem;
 }
 .tip strong { color: var(--wine); }
+
+.answer-block {
+  background: var(--cream-dark); border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0; padding: 1rem 1.15rem; margin: 1.2rem 0 1.4rem; font-size: 1.05rem;
+}
+.answer-block strong { color: var(--wine); }
+.faq-fig { margin: 1.4rem 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.faq-fig img { width: 100%; height: auto; }
+.faq-fig figcaption { padding: 0.6rem 0.9rem; font-size: 0.9rem; color: var(--muted); background: var(--card); }
 
 .faq { margin: 2.6rem 0; }
 .faq h2 { font-size: 1.7rem; }

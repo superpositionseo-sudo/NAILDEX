@@ -15,6 +15,9 @@ const YT_CHANNEL = 'https://www.youtube.com/@naildex';
 const PINTEREST = 'https://www.pinterest.com/sewinsnearmeofficial/';
 
 const { posts } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/posts.json'), 'utf8'));
+const faqFile = path.join(ROOT, 'data/faq-posts.json');
+const { faqs } = fs.existsSync(faqFile) ? JSON.parse(fs.readFileSync(faqFile, 'utf8')) : { faqs: [] };
+const postsByHub = new Map(posts.map((p) => [p.hubSlug, p]));
 
 // Generate the social/schema image crops (public/images/og/<slug>-*.jpg)
 // from each article's pin image. Best effort: if python3/PIL is missing,
@@ -196,6 +199,7 @@ function header() {
     <nav class="main-nav" aria-label="Main">
       <a href="/blog/">Journal</a>
       <a href="/topics/">Topics</a>
+      <a href="/faq/">FAQ</a>
       <a href="/about/">About</a>
       <a class="btn btn-gold" href="${YT_CHANNEL}" rel="noopener" target="_blank">Watch</a>
     </nav>
@@ -294,14 +298,26 @@ function articlePage(post) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.excerpt,
-    image: articleImages(post).map((p) => SITE_URL + p),
-    datePublished: post.publishedAt,
-    author: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
-    publisher: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
-    mainEntityOfPage: SITE_URL + '/blog/' + post.slug + '/',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt,
+        image: articleImages(post).map((p) => SITE_URL + p),
+        datePublished: post.publishedAt,
+        author: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
+        publisher: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
+        mainEntityOfPage: SITE_URL + '/blog/' + post.slug + '/',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: (post.faq || []).map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: String(f.a).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*/g, '') },
+        })),
+      },
+    ],
   };
 
   const body = `${header()}
@@ -452,6 +468,117 @@ ${footer()}`;
   }) + '\n<body>\n' + body;
 }
 
+function faqPage(f) {
+  const hub = postsByHub.get(f.hubSlug);
+  if (!hub) { console.warn('faq without hub post:', f.slug); return notFoundPage(); }
+  const n = hub.designs.length;
+  const imgIdx = [...new Set([0, Math.floor(n / 3), Math.floor((2 * n) / 3), n - 1])];
+  const figs = imgIdx.map((i) => hub.designs[i]);
+  const qaAll = [{ q: f.question, a: f.directAnswer }, ...f.qa.filter((x) => x.q !== f.question)];
+  let figPos = 0;
+  const qaHtml = f.qa.map((x, i) => {
+    let h = `<section class="design" id="q-${i + 1}">
+      <h2>${esc(x.q)}</h2>
+      ${paras(Array.isArray(x.a) ? x.a : [x.a])}
+    </section>`;
+    if ((i === 1 || i === 4 || i === 7) && figPos < figs.length) {
+      const d = figs[figPos++];
+      h += `\n    <figure class="faq-fig"><img src="${d.image}" alt="${esc(d.alt)}" loading="lazy"><figcaption>${esc(d.name)} — from the <a href="/blog/${hub.slug}/">${esc(hub.title)}</a> collection</figcaption></figure>`;
+    }
+    return h;
+  }).join('\n    ');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: f.question,
+        description: f.excerpt,
+        image: articleImages(hub).map((p) => SITE_URL + p),
+        datePublished: f.publishedAt,
+        author: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
+        publisher: { '@type': 'Organization', name: 'NailDex', url: SITE_URL },
+        mainEntityOfPage: SITE_URL + '/faq/' + f.slug + '/',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: qaAll.map((x) => ({
+          '@type': 'Question',
+          name: x.q,
+          acceptedAnswer: { '@type': 'Answer', text: (Array.isArray(x.a) ? x.a.join(' ') : String(x.a)).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*/g, '') },
+        })),
+      },
+    ],
+  };
+  const body = `${header()}
+<main class="narrow">
+  <div class="article-head">
+    <p class="meta"><a href="/faq/">Nail questions, answered</a><span class="dot">&bull;</span><a href="/topics/${hub.hubSlug}/">${esc(hub.category)}</a></p>
+    <h1>${esc(f.question)}</h1>
+    <p class="excerpt">${esc(f.excerpt)}</p>
+  </div>
+  <div class="answer-block"><strong>The short answer:</strong> ${inline(f.directAnswer)}</div>
+  <div class="article-body">
+    ${paras(f.intro)}
+  </div>
+  ${watchBlock(hub)}
+  <div>
+    ${qaHtml}
+  </div>
+  <section class="faq" aria-label="See the designs">
+    <h2>See the designs</h2>
+    <p>Every answer above comes from the full <a href="/blog/${hub.slug}/">${esc(hub.title)}</a> collection — ${hub.designCount} numbered designs on real hands, each with the exact words to ask your nail tech for.</p>
+  </section>
+  ${saveBlock(hub)}
+  ${followBlock(hub)}
+</main>
+${footer()}`;
+  const ogMain = ogCrop(hub, 'og');
+  return head({
+    title: f.question + ' | NailDex',
+    description: f.excerpt,
+    canonical: SITE_URL + '/faq/' + f.slug + '/',
+    ogType: 'article',
+    ogImage: ogMain || hub.coverImage,
+    ogWidth: ogMain ? 1200 : null,
+    ogHeight: ogMain ? 630 : null,
+    extra: '<script type="application/ld+json">' + JSON.stringify(jsonLd) + '</script>',
+  }) + '\n<body>\n' + body;
+}
+
+function faqIndexPage() {
+  const sortedFaqs = [...faqs].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const items = sortedFaqs.map((f) => {
+    const hub = postsByHub.get(f.hubSlug);
+    return `<article class="card">
+    <figure><a href="/faq/${f.slug}/"><img src="${hub ? hub.coverImage : ''}" alt="${esc(f.question)}" loading="lazy"></a></figure>
+    <div class="body">
+      <p class="meta">${hub ? esc(hub.category) : 'FAQ'}<span class="dot">&bull;</span>${f.qa.length + 1} answers</p>
+      <h3><a href="/faq/${f.slug}/">${esc(f.question)}</a></h3>
+      <p>${esc(f.excerpt)}</p>
+    </div>
+  </article>`;
+  }).join('\n    ');
+  const body = `${header()}
+<main class="wrap">
+  <div class="page-head">
+    <p class="meta">NailDex FAQ</p>
+    <h1>Nail Questions, Answered</h1>
+    <p>The questions people actually search, answered from the NailDex collections: colors, trends, shapes, costs and exactly what to ask your nail tech for.</p>
+  </div>
+  <div class="cards">
+    ${items || '<p>New answers land daily.</p>'}
+  </div>
+</main>
+${footer()}`;
+  return head({
+    title: 'Nail Questions, Answered | NailDex FAQ',
+    description: 'Nail FAQ: best colors by season and skin tone, trends, shapes, costs and care — answered from the NailDex design collections.',
+    canonical: SITE_URL + '/faq/',
+    ogImage: sorted[0].coverImage,
+  }) + '\n<body>\n' + body;
+}
+
 function aboutPage() {
   const body = `${header()}
 <main class="narrow">
@@ -509,6 +636,8 @@ function writePage(relPath, html) {
 writePage('index.html', homePage());
 writePage('blog/index.html', blogIndexPage());
 writePage('topics/index.html', topicsIndexPage());
+writePage('faq/index.html', faqIndexPage());
+for (const f of faqs) writePage('faq/' + f.slug + '/index.html', faqPage(f));
 for (const post of posts) writePage('blog/' + post.slug + '/index.html', articlePage(post));
 for (const hub of hubs) writePage('topics/' + hub.slug + '/index.html', hubPage(hub));
 writePage('about/index.html', aboutPage());
@@ -521,6 +650,8 @@ const urls = [
   { loc: '/', lastmod: sorted[0].publishedAt },
   { loc: '/blog/', lastmod: sorted[0].publishedAt },
   { loc: '/topics/', lastmod: sorted[0].publishedAt },
+  { loc: '/faq/', lastmod: sorted[0].publishedAt },
+  ...faqs.map((f) => ({ loc: '/faq/' + f.slug + '/', lastmod: f.publishedAt })),
   { loc: '/about/', lastmod: sorted[0].publishedAt },
   ...hubs.map((h) => ({ loc: '/topics/' + h.slug + '/', lastmod: sorted[0].publishedAt })),
   ...sorted.map((p) => ({ loc: '/blog/' + p.slug + '/', lastmod: p.publishedAt })),
