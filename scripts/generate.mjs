@@ -66,6 +66,66 @@ const HUB_BLURBS = {
     'One color, every finish: pearl glaze, iridescent mirror, vanilla and silver chrome over a sheer milky base, on the almond shape that suits it best.',
   coffee:
     'The full coffee menu on nails: espresso, chocolate, mocha and latte shades, latte art, marble swirls and coffee chrome across every shape.',
+  'gel-x':
+    'Soft gel extensions, no acrylic dust: almond, coffin, stiletto and square Gel X sets with French tips, chrome, cat eye and aura finishes on real hands.',
+  'caramel-nude':
+    'The warm neutral family: caramel, toffee and honey nude sets on almond and coffin shapes, glossy and matte, on every skin tone.',
+  'wedding-almond':
+    'Bridal almond sets: cream, pearl, French and soft white finishes with cuticle dots, chrome glaze and quiet luxury detail for the day and every photo after.',
+  'black-cherry':
+    'Near-black cherry depth: glossy black cherry ovals, almond and stiletto sets that read black in low light and wine red in the sun.',
+  burgundy:
+    'The deepest red family: glossy burgundy almond, oxblood, wine chrome and gold foil sets for fall, winter and every evening after.',
+  'chocolate-brown':
+    'Glossy espresso, matte cocoa, chocolate French tips and brown chrome: chocolate brown sets on real hands, from short everyday squares to full stiletto drama.',
+  'pumpkin-spice':
+    'Peak fall in a set: pumpkin orange, spice browns, plaid, leaf art and glitter almond and coffin designs for sweater season.',
+  'halloween-french-tips':
+    'The French manicure in costume: black tips, white webs, blood drip and ghost art on almond and square French sets.',
+  black:
+    'Black in every finish: glossy stiletto, matte coffin, 3D roses, gold jewels and chrome black sets on real hands and every skin tone.',
+  'dark-red-cat-eye':
+    'Magnetic dark red depth: galaxy cat eye stilettos, wine velvet glow and duochrome shifts in the deepest red family.',
+  november:
+    'The month between fall and the holidays: golden leaf burgundy, cozy browns, plaid and soft glam sets for November light.',
+  'short-fall':
+    'Fall color at natural length: skittles squares, tortoise, plaid and leaf art on short sets that still type, text and open jars.',
+  'almond-french-tips':
+    'The French manicure on its best shape: classic white, pearl, sky and colored tips on almond sets, from micro lines to full chrome.',
+  red:
+    'Red in every register: deep red palm duos, classic glossy almond, velvet and chrome red sets on every skin tone.',
+  nude:
+    'Clean nude polish, perfected: milky nude almond close-ups, French nudes and soft neutral sets that go with everything you own.',
+  'pink-chrome':
+    'Mirror pink shine: pink chrome stilettos, glazed almond and iridescent pearl sets that shift from blush to silver in the light.',
+  winter:
+    'Cold season sets: gold snowflake pearl coffins, icy chrome, knit textures and deep winter solids on real hands.',
+  'holiday-party':
+    'Party season shine: gold crystal marble coffins, glitter, chrome and jewel tones built for December nights and photos.',
+  christmas:
+    'Christmas on nails: festive stiletto art, red and green classics, snowflakes, trees and gold detail for the holiday weeks.',
+  'christmas-french-tips':
+    'Holiday French tips: red snowflake coffins, tree art, candy stripes and classic French with a Christmas twist.',
+  'silver-chrome':
+    'Liquid metal shine: silver mirror coffins, chrome French and iridescent sets on every skin tone.',
+  'gold-metallic':
+    'Full gold mirror: gold metallic stilettos, chrome almond and molten foil sets that carry the whole outfit.',
+  'emerald-green':
+    'The jewel green family: emerald almond sets, deep green chrome and gold-flecked greens on every skin tone.',
+  snowflake:
+    'Snowflake art, every way: ombre coffins, sweater textures, icy French and hand-painted flakes for the coldest weeks.',
+  'velvet-red':
+    'Velvet red depth: matte and glossy velvet red stilettos and almond sets with a soft, lit-from-within glow.',
+  'winter-almond':
+    'Winter on almond nails: burgundy snowflake sets on fur, icy French, pearl and deep cold-season solids.',
+  'icy-blue':
+    'Frozen blue shine: icy blue coffins with crystal accents, glacier chrome and pale winter French sets.',
+  'pearl-white':
+    'Pearl in full: full pearl coffins, glazed white almond and iridescent pearl finishes on every skin tone.',
+  'new-years-eve':
+    'Midnight in a manicure: black and gold coffins, glitter, confetti chrome and champagne shimmer for the last night of the year.',
+  thanksgiving:
+    'Gratitude season sets: turkey, pumpkin and leaf art almonds, warm browns and harvest plaid for the table and the photos.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
