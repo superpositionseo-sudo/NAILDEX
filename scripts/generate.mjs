@@ -135,6 +135,16 @@ const HUB_BLURBS = {
     'Snowflake art, frosty whites, short burgundy, cozy glitter and French tips at practical lengths on real hands: the short winter edit.',
   plum:
     'Rich plum, dark eggplant, chrome and cat eye depth, glitter, marble and matte finishes on real hands: the deep-purple edit.',
+  crazy:
+    'Dragon scales, molten gold, a full aquarium in clear gel and sculpted 3D roses: maximalist nail art turned all the way up, the wildest collection on NailDex.',
+  'old-money':
+    'Emerald, tortoiseshell, pearl strings and heritage gold: quiet-luxury nail designs in rich neutrals and deep jewel tones, finished immaculately.',
+  pumpkin:
+    'Pumpkins in every finish: molten chrome, French tips, plaid, glitter, marble and pearl. Twenty-five pumpkin nail designs for peak fall.',
+  chrome:
+    'Mirror chrome in every colorway: liquid silver, gold, aurora, holographic, gunmetal and pearl. Twenty-five chrome nail designs with a liquid-metal shine.',
+  'french-tips':
+    'The French manicure, twenty-five ways: classic white, aurora chrome tips, leopard, neon, reverse French and tonal nude on a sheer base.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
