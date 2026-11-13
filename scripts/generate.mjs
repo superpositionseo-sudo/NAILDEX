@@ -195,6 +195,7 @@ ${ogImage ? '<meta name="twitter:image" content="' + SITE_URL + ogImage + '">' :
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/src/styles.css">
+<meta name="google-adsense-account" content="ca-pub-9615253365994859">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9615253365994859" crossorigin="anonymous"></script>
 ${extra}
 </head>`;
