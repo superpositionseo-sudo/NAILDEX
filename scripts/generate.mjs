@@ -205,6 +205,20 @@ const HUB_BLURBS = {
     'Jet black with silver chrome, foil, glitter and stars: twenty-five black and silver nail designs with maximum contrast and shine.',
   bling:
     'Full crystal pave, gemstone bling and crystal waves: twenty-five bling nail designs with maximum sparkle, from ruby pave to a crystal supernova.',
+  december:
+    'Cranberry, emerald, molten gold and frost: December nail designs for the whole holiday month, from candy cane stripes and holly to snowflakes and quiet winter shimmer.',
+  'christmas-almond':
+    'The Christmas collection on almond nails: string lights, candy canes, snowflakes, holly and a snowman, the tapered almond shape carrying every design.',
+  'candy-cane':
+    'Red and white, twenty-five ways: candy cane stripes, peppermint swirls, candy cane French tips, chrome, jelly and glitter. The candy cane collection.',
+  'simple-holiday':
+    'Clean and minimal holiday nails: glossy solids in Christmas colors, one tiny snowflake, one holly sprig, simple French tips and fine glitter gradients.',
+  'subtle-holiday':
+    'Muted, sheer and milky: subtle holiday nails in cranberry tints, champagne shimmer, soft gold and quiet pine, for a season that whispers.',
+  'christmas-colors':
+    'The Christmas color palette, twenty-five ways: cranberry, Santa red, emerald, champagne gold, icy silver, plum and pine in gloss, chrome, velvet and glitter.',
+  'short-almond-christmas':
+    'Christmas designs made for short almond nails: candy stripes, holly, snowflakes, plaid, reindeer and a short French, scaled to compact lengths.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
