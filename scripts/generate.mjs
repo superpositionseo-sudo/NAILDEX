@@ -145,6 +145,66 @@ const HUB_BLURBS = {
     'Mirror chrome in every colorway: liquid silver, gold, aurora, holographic, gunmetal and pearl. Twenty-five chrome nail designs with a liquid-metal shine.',
   'french-tips':
     'The French manicure, twenty-five ways: classic white, aurora chrome tips, leopard, neon, reverse French and tonal nude on a sheer base.',
+  jeweled:
+    'Ruby, sapphire, emerald, amethyst and diamond: gemstone nail designs cut and polished like fine jewelry, with pave, cabochons and marquise stones.',
+  'louis-vuitton':
+    'Monogram canvas, damier checks, trunk stripes and vachetta tan: Louis Vuitton inspired nail designs painted flat and flush, luxury-brand nail art.',
+  gucci:
+    'GG emblems, the web stripe, horsebit gold and Flora blooms: Gucci inspired nail designs painted flat and flush, luxury-brand nail art.',
+  rainbow:
+    'The full spectrum, twenty-five ways: rainbow marble, ombre, French tips, glitter, hologram and watercolor, from neon brights to soft pastels.',
+  'diamond-sparkle':
+    'Crystal cascades, rhinestone veils and diamond French tips: diamond sparkle nail designs in silver, frost and ice, built to catch light.',
+  'golden-glitter':
+    'Gold in every glitter cut: champagne sparkle, honey glitter, liquid gold, confetti and glitter French tips. Twenty-five golden glitter nail designs.',
+  'golden-hour':
+    'Sunset golds, apricot, amber, honey and bronze: golden hour nail designs in ombre, chrome and pearl, the warmest light of the day as a palette.',
+  glitter:
+    'Glitter in every color: prism, gold, ruby, emerald, sapphire, violet and midnight, plus glitter tips, ombre and sheer veils. Twenty-five glitter designs.',
+  short:
+    'Designs made for short nails: glossy jewel shines, micro dots, a mini French and fine line art that reads at any length, no extensions needed.',
+  wedding:
+    'Ivory, pearl, blush and champagne: wedding nail designs with lace, French tips, satin bows and something blue, for brides and the whole party.',
+  butterfly:
+    'Butterflies in chrome, morpho blue, monarch orange, aura and glitter: twenty-five butterfly nail designs, plus butterfly French tips and pearls.',
+  floral:
+    'Pressed flowers, roses, daisies, sunflowers, lavender and cherry blossom: twenty-five floral nail designs with French tips, pearls and marble.',
+  'old-money-red':
+    'Garnet, claret, oxblood and bordeaux: quiet-luxury red nail designs with tortoise, pearl, cameo and gold filigree, the old money palette in red.',
+  'sugar-plum':
+    'Rich plum, burgundy and deep berry velvet tones with gold foil and soft shimmer: twenty-five sugar plum nail designs for the holiday season and beyond.',
+  candy:
+    'The candy shop as nail art: rainbow candy, gummy bears, lollipop swirls, peppermint and jelly beans. Twenty-five sweet candy nail designs.',
+  galaxy:
+    'Milky Way spirals, nebula blooms, Saturn rings and comet tails: twenty-five galaxy nail designs that put deep space on your fingertips.',
+  zodiac:
+    'All twelve star signs, Aries to Pisces, plus planets, birthstones and star charts: twenty-five zodiac nail designs for astrology lovers.',
+  girly:
+    'Bows, pearls, hearts, tiaras and macarons in pink and pearl: twenty-five girly nail designs, unapologetically feminine and finished soft.',
+  futuristic:
+    'Neural chrome, plasma, quantum glass and laser lattices: twenty-five futuristic nail designs from tomorrow, in chrome, holo and acid color.',
+  mythical:
+    'Dragons, phoenixes, unicorns, krakens and medusa: twenty-five mythical creature nail designs from legends around the world.',
+  ocean:
+    'Tiger sharks, clownfish reefs, whales, seahorses, octopus and jellyfish: twenty-five ocean nail designs full of sea life.',
+  fairytale:
+    'Glass slippers, enchanted roses, poisoned apples and pumpkin carriages: twenty-five fairytale nail designs straight out of the storybook.',
+  'november-almond':
+    'Cranberry, salted caramel, chestnut, cocoa and sage on almond nails: twenty-five November almond designs for late fall, ending at the first snowfall.',
+  fruit:
+    'Strawberries, watermelon, pineapple, kiwi, cherries and citrus: twenty-five fruit nail designs, juicy color from the orchard and the market.',
+  chocolate:
+    'Truffles, ganache, mocha and cocoa: twenty-five chocolate nail designs in rich brown tones, from milk to midnight cocoa.',
+  garden:
+    'Butterflies, peonies, hummingbirds, dragonflies and honey bees: twenty-five garden nail designs where nature is the art.',
+  chanel:
+    'Interlocking double-C emblems, diamond quilting, camellias, pearls and tweed: thirty Chanel inspired nail designs in black, white, ivory and rouge.',
+  'soft-gel':
+    'Translucent jelly and syrup gels, milky glass nails and sheer layered color: twenty-five soft gel nail designs with a dewy, glossy finish.',
+  'black-and-silver':
+    'Jet black with silver chrome, foil, glitter and stars: twenty-five black and silver nail designs with maximum contrast and shine.',
+  bling:
+    'Full crystal pave, gemstone bling and crystal waves: twenty-five bling nail designs with maximum sparkle, from ruby pave to a crystal supernova.',
 };
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
